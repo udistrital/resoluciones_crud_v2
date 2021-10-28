@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS resoluciones_new.modificacion_vinculacion CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.modificacion_vinculacion_id_seq CASCADE;
+DROP TABLE IF EXISTS resoluciones_new.modificacion_resolucion CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.modificacion_resolucion_id_seq CASCADE;
+DROP TABLE IF EXISTS resoluciones_new.resolucion_estado CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.resolucion_estado_id_seq CASCADE;
+DROP TABLE IF EXISTS resoluciones_new.componente_resolucion CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.componente_resolucion_id_seq CASCADE;
+DROP TABLE IF EXISTS resoluciones_new.resolucion_vinculacion_docente CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.resolucion_vinculacion_docente_id_seq CASCADE;
+DROP TABLE IF EXISTS resoluciones_new.vinculacion_docente CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.vinculacion_docente_id_seq CASCADE;
+DROP TABLE IF EXISTS resoluciones_new.resolucion CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.resolucion_id_seq CASCADE;
+DROP SCHEMA IF EXISTS resoluciones_new CASCADE;
