@@ -28,8 +28,8 @@ type Resolucion struct {
 	CuadroResponsabilidades string    `orm:"column(cuadro_responsabilidades);type(json);null"`
 	NuxeoUid                string    `orm:"column(nuxeo_uid);null"`
 	Activo                  bool      `orm:"column(activo);null"`
-	FechaCreacion           time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion       time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	FechaCreacion           string    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion       string    `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
 func (t *Resolucion) TableName() string {

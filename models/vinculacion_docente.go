@@ -31,8 +31,8 @@ type VinculacionDocente struct {
 	VigenciaRp                     float64                       `orm:"column(vigencia_rp);null"`
 	FechaInicio                    time.Time                     `orm:"column(fecha_inicio);type(timestamp without time zone);null"`
 	Activo                         bool                          `orm:"column(activo);null"`
-	FechaCreacion                  time.Time                     `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion              time.Time                     `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	FechaCreacion                  string                        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion              string                        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
 func (t *VinculacionDocente) TableName() string {

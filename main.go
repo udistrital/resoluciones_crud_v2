@@ -1,11 +1,15 @@
 package main
 
 import (
-	_ "resoluciones_crud_v2/routers"
+	_ "github.com/udistrital/resoluciones_crud_v2/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
+	"github.com/udistrital/auditoria"
+	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
+	"github.com/udistrital/utils_oas/customerrorv2"
 )
 
 func main() {
