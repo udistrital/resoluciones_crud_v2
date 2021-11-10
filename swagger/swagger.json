@@ -188,6 +188,179 @@
                 }
             }
         },
+        "/disponibilidad_vinculacion/": {
+            "get": {
+                "tags": [
+                    "disponibilidad_vinculacion"
+                ],
+                "description": "get DisponibilidadVinculacion",
+                "operationId": "DisponibilidadVinculacionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadVinculacion"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "disponibilidad_vinculacion"
+                ],
+                "description": "create DisponibilidadVinculacion",
+                "operationId": "DisponibilidadVinculacionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DisponibilidadVinculacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadVinculacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DisponibilidadVinculacion"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/disponibilidad_vinculacion/{id}": {
+            "get": {
+                "tags": [
+                    "disponibilidad_vinculacion"
+                ],
+                "description": "get DisponibilidadVinculacion by id",
+                "operationId": "DisponibilidadVinculacionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadVinculacion"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "disponibilidad_vinculacion"
+                ],
+                "description": "update the DisponibilidadVinculacion",
+                "operationId": "DisponibilidadVinculacionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DisponibilidadVinculacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadVinculacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadVinculacion"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "disponibilidad_vinculacion"
+                ],
+                "description": "delete the DisponibilidadVinculacion",
+                "operationId": "DisponibilidadVinculacionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
         "/modificacion_resolucion/": {
             "get": {
                 "tags": [
@@ -1263,6 +1436,39 @@
                 }
             }
         },
+        "models.DisponibilidadVinculacion": {
+            "title": "DisponibilidadVinculacion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "Disponibilidad": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "FechaCreacion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Rubro": {
+                    "type": "string"
+                },
+                "Valor": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "VinculacionDocenteId": {
+                    "$ref": "#/definitions/models.VinculacionDocente"
+                }
+            }
+        },
         "models.ModificacionResolucion": {
             "title": "ModificacionResolucion",
             "type": "object",
@@ -1567,6 +1773,10 @@
         {
             "name": "vinculacion_docente",
             "description": "VinculacionDocenteController operations for VinculacionDocente\n"
+        },
+        {
+            "name": "disponibilidad_vinculacion",
+            "description": "DisponibilidadVinculacionController operations for DisponibilidadVinculacion\n"
         }
     ]
 }

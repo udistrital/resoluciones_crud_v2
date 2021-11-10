@@ -284,6 +284,39 @@ COMMENT ON TABLE resoluciones_new.modificacion_vinculacion IS E'Modificaciones r
 ALTER TABLE resoluciones_new.modificacion_vinculacion OWNER TO desarrollooas;
 -- ddl-end --
 
+-- object: resoluciones_new.disponibilidad_vinculacion | type: TABLE --
+-- DROP TABLE IF EXISTS resoluciones_new.disponibilidad_vinculacion CASCADE;
+CREATE TABLE resoluciones_new.disponibilidad_vinculacion (
+	id serial NOT NULL,
+	disponibilidad integer NOT NULL,
+	rubro character varying(50) NOT NULL,
+	valor numeric(16,3),
+	vinculacion_docente_id integer,
+	activo boolean,
+	fecha_creacion timestamp NOT NULL,
+	fecha_modificacion timestamp,
+	CONSTRAINT pk_disponibilidad_vinculacion PRIMARY KEY (id)
+
+);
+-- ddl-end --
+COMMENT ON TABLE resoluciones_new.disponibilidad_vinculacion IS E'Tabla que relaciona la vinculacióin de un docente con las diferentes disponibilidades presupuestales de las que llegue a obtener recursos';
+-- ddl-end --
+COMMENT ON COLUMN resoluciones_new.disponibilidad_vinculacion.id IS E'identificador de la tabla';
+-- ddl-end --
+COMMENT ON COLUMN resoluciones_new.disponibilidad_vinculacion.disponibilidad IS E'Numero de la disponibilidad presupuestal';
+-- ddl-end --
+COMMENT ON COLUMN resoluciones_new.disponibilidad_vinculacion.fecha_creacion IS E'Fecha de creación del registro';
+-- ddl-end --
+ALTER TABLE resoluciones_new.disponibilidad_vinculacion OWNER TO postgres;
+-- ddl-end --
+
+-- object: fk_vinculacion_docente | type: CONSTRAINT --
+-- ALTER TABLE resoluciones_new.disponibilidad_vinculacion DROP CONSTRAINT IF EXISTS fk_vinculacion_docente CASCADE;
+ALTER TABLE resoluciones_new.disponibilidad_vinculacion ADD CONSTRAINT fk_vinculacion_docente FOREIGN KEY (vinculacion_docente_id)
+REFERENCES resoluciones_new.vinculacion_docente (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
 -- object: fk_vinculacion_docente_resolucion_vinculacion_docente | type: CONSTRAINT --
 -- ALTER TABLE resoluciones_new.vinculacion_docente DROP CONSTRAINT IF EXISTS fk_vinculacion_docente_resolucion_vinculacion_docente CASCADE;
 ALTER TABLE resoluciones_new.vinculacion_docente ADD CONSTRAINT fk_vinculacion_docente_resolucion_vinculacion_docente FOREIGN KEY (resolucion_vinculacion_docente_id)

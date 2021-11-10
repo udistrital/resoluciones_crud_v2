@@ -57,6 +57,12 @@ func init() {
 				&controllers.VinculacionDocenteController{},
 			),
 		),
+
+		beego.NSNamespace("/disponibilidad_vinculacion",
+			beego.NSInclude(
+				&controllers.DisponibilidadVinculacionController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

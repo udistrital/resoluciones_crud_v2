@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS resoluciones_new.disponibilidad_vinculacion CASCADE;
+DROP SEQUENCE IF EXISTS resoluciones_new.disponibilidad_vinculacion_id_seq CASCADE;
 DROP TABLE IF EXISTS resoluciones_new.modificacion_vinculacion CASCADE;
 DROP SEQUENCE IF EXISTS resoluciones_new.modificacion_vinculacion_id_seq CASCADE;
 DROP TABLE IF EXISTS resoluciones_new.modificacion_resolucion CASCADE;
