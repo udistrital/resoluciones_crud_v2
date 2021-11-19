@@ -307,7 +307,7 @@ COMMENT ON COLUMN resoluciones_new.disponibilidad_vinculacion.disponibilidad IS 
 -- ddl-end --
 COMMENT ON COLUMN resoluciones_new.disponibilidad_vinculacion.fecha_creacion IS E'Fecha de creación del registro';
 -- ddl-end --
-ALTER TABLE resoluciones_new.disponibilidad_vinculacion OWNER TO postgres;
+ALTER TABLE resoluciones_new.disponibilidad_vinculacion OWNER TO desarrollooas;
 -- ddl-end --
 
 -- object: fk_vinculacion_docente | type: CONSTRAINT --
