@@ -25,7 +25,6 @@ type VinculacionDocente struct {
 	ValorContrato                  float64                       `orm:"column(valor_contrato);null"`
 	Categoria                      string                        `orm:"column(categoria);null"`
 	Emerito                        bool                          `orm:"column(emerito)"`
-	Disponibilidad                 int                           `orm:"column(disponibilidad);null"`
 	DependenciaAcademica           int                           `orm:"column(dependencia_academica);null"`
 	NumeroRp                       float64                       `orm:"column(numero_rp);null"`
 	VigenciaRp                     float64                       `orm:"column(vigencia_rp);null"`

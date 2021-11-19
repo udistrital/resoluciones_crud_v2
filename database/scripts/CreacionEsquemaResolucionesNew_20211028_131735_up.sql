@@ -1,6 +1,6 @@
--- Database generated with pgModeler (desarrollooasQL Database Modeler).
+-- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.9.3-beta1
--- desarrollooasQL version: 9.6
+-- PostgreSQL version: 9.6
 -- Project Site: pgmodeler.io
 -- Model Author: Juan Pablo Moreno Rico
 
@@ -94,7 +94,6 @@ CREATE TABLE resoluciones_new.vinculacion_docente (
 	valor_contrato numeric(16,3),
 	categoria character varying(15),
 	emerito boolean NOT NULL DEFAULT false,
-	disponibilidad integer,
 	dependencia_academica integer,
 	numero_rp numeric(6,0),
 	vigencia_rp numeric(4,0),
