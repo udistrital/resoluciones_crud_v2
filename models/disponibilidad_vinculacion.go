@@ -10,7 +10,7 @@ import (
 )
 
 type DisponibilidadVinculacion struct {
-	Id                   int                 `orm:"column(id);pk"`
+	Id                   int                 `orm:"column(id);pk;auto"`
 	Disponibilidad       int                 `orm:"column(disponibilidad)"`
 	Rubro                string              `orm:"column(rubro)"`
 	Valor                float64             `orm:"column(valor);null"`

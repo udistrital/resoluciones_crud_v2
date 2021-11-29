@@ -10,12 +10,12 @@ import (
 )
 
 type ComponenteResolucion struct {
-	Id                        int                   `orm:"column(id);pk"`
+	Id                        int                   `orm:"column(id);pk;auto"`
 	Numero                    int                   `orm:"column(numero)"`
 	ResolucionId              *Resolucion           `orm:"column(resolucion_id);rel(fk)"`
 	Texto                     string                `orm:"column(texto)"`
 	TipoComponente            string                `orm:"column(tipo_componente)"`
-	ComponenteResolucionPadre *ComponenteResolucion `orm:"column(componente_resolucion_padre);rel(fk)"`
+	ComponenteResolucionPadre *ComponenteResolucion `orm:"column(componente_resolucion_padre);rel(fk);null"`
 	Activo                    bool                  `orm:"column(activo);null"`
 	FechaCreacion             string                `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
 	FechaModificacion         string                `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`

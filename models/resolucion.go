@@ -11,7 +11,7 @@ import (
 )
 
 type Resolucion struct {
-	Id                      int       `orm:"column(id);pk"`
+	Id                      int       `orm:"column(id);pk;auto"`
 	NumeroResolucion        string    `orm:"column(numero_resolucion)"`
 	FechaExpedicion         time.Time `orm:"column(fecha_expedicion);type(timestamp without time zone);null"`
 	Vigencia                int       `orm:"column(vigencia)"`

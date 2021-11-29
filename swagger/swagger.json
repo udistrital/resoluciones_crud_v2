@@ -1675,10 +1675,6 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "Disponibilidad": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "Emerito": {
                     "type": "boolean"
                 },

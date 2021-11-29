@@ -10,7 +10,7 @@ import (
 )
 
 type ModificacionResolucion struct {
-	Id                   int         `orm:"column(id);pk"`
+	Id                   int         `orm:"column(id);pk;auto"`
 	ResolucionNuevaId    *Resolucion `orm:"column(resolucion_nueva_id);rel(fk)"`
 	ResolucionAnteriorId *Resolucion `orm:"column(resolucion_anterior_id);rel(fk)"`
 	Activo               bool        `orm:"column(activo);null"`

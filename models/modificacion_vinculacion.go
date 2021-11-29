@@ -10,7 +10,7 @@ import (
 )
 
 type ModificacionVinculacion struct {
-	Id                             int                     `orm:"column(id);pk"`
+	Id                             int                     `orm:"column(id);pk;auto"`
 	ModificacionResolucionId       *ModificacionResolucion `orm:"column(modificacion_resolucion_id);rel(fk)"`
 	VinculacionDocenteCanceladaId  *VinculacionDocente     `orm:"column(vinculacion_docente_cancelada_id);rel(fk)"`
 	VinculacionDocenteRegistradaId *VinculacionDocente     `orm:"column(vinculacion_docente_registrada_id);rel(fk)"`
