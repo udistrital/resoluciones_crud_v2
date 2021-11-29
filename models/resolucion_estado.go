@@ -10,7 +10,7 @@ import (
 )
 
 type ResolucionEstado struct {
-	Id                 int         `orm:"column(id);pk"`
+	Id                 int         `orm:"column(id);pk;auto"`
 	Usuario            string      `orm:"column(usuario);null"`
 	EstadoResolucionId int         `orm:"column(estado_resolucion_id)"`
 	ResolucionId       *Resolucion `orm:"column(resolucion_id);rel(fk)"`
