@@ -12,7 +12,7 @@ import (
 
 type VinculacionDocente struct {
 	Id                             int                           `orm:"column(id);pk;auto"`
-	NumeroContrato                 string                        `orm:"column(numero_contrato);null"`
+	NumeroContrato                 *string                       `orm:"column(numero_contrato);null"`
 	Vigencia                       int                           `orm:"column(vigencia);null"`
 	PersonaId                      float64                       `orm:"column(persona_id)"`
 	NumeroHorasSemanales           int                           `orm:"column(numero_horas_semanales)"`
@@ -24,7 +24,6 @@ type VinculacionDocente struct {
 	ProyectoCurricularId           int16                         `orm:"column(proyecto_curricular_id)"`
 	ValorContrato                  float64                       `orm:"column(valor_contrato);null"`
 	Categoria                      string                        `orm:"column(categoria);null"`
-	Emerito                        bool                          `orm:"column(emerito)"`
 	DependenciaAcademica           int                           `orm:"column(dependencia_academica);null"`
 	NumeroRp                       float64                       `orm:"column(numero_rp);null"`
 	VigenciaRp                     float64                       `orm:"column(vigencia_rp);null"`
