@@ -1675,9 +1675,6 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "Emerito": {
-                    "type": "boolean"
-                },
                 "FechaCreacion": {
                     "type": "string"
                 },

@@ -93,7 +93,6 @@ CREATE TABLE resoluciones_new.vinculacion_docente (
 	proyecto_curricular_id smallint NOT NULL,
 	valor_contrato numeric(16,3),
 	categoria character varying(15),
-	emerito boolean NOT NULL DEFAULT false,
 	dependencia_academica integer,
 	numero_rp numeric(6,0),
 	vigencia_rp numeric(4,0),
@@ -287,7 +286,7 @@ ALTER TABLE resoluciones_new.modificacion_vinculacion OWNER TO desarrollooas;
 -- DROP TABLE IF EXISTS resoluciones_new.disponibilidad_vinculacion CASCADE;
 CREATE TABLE resoluciones_new.disponibilidad_vinculacion (
 	id serial NOT NULL,
-	disponibilidad integer NOT NULL,
+	disponibilidad integer,
 	rubro character varying(50) NOT NULL,
 	valor numeric(16,3),
 	vinculacion_docente_id integer,
