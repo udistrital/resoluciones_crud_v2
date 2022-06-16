@@ -288,6 +288,7 @@ CREATE TABLE resoluciones_new.disponibilidad_vinculacion (
 	id serial NOT NULL,
 	disponibilidad integer,
 	rubro character varying(50) NOT NULL,
+	nombre_rubro varying(50),
 	valor numeric(16,3),
 	vinculacion_docente_id integer,
 	activo boolean,
