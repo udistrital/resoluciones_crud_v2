@@ -13,7 +13,7 @@ type DisponibilidadVinculacion struct {
 	Id                   int                 `orm:"column(id);pk;auto"`
 	Disponibilidad       int                 `orm:"column(disponibilidad);null"`
 	Rubro                string              `orm:"column(rubro)"`
-	NombreRubro          string              `orm:"column(nombre_rubro)"`
+	NombreRubro          string              `orm:"column(nombre_rubro);null"`
 	Valor                float64             `orm:"column(valor);null"`
 	VinculacionDocenteId *VinculacionDocente `orm:"column(vinculacion_docente_id);rel(fk)"`
 	Activo               bool                `orm:"column(activo);null"`
