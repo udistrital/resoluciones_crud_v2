@@ -1457,6 +1457,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "NombreRubro": {
+                    "type": "string"
+                },
                 "Rubro": {
                     "type": "string"
                 },
