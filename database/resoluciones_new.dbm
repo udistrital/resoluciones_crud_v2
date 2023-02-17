@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.3-beta1" use-changelog="false" last-position="848,180" last-zoom="1" max-obj-count="12"
+	 default-schema="public" default-owner="postgres">
+<role name="desarrollooas"
+      superuser="true"
+      createdb="true"
+      createrole="true"
+      inherit="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<database name="proyectos_db" encoding="UTF8" lc-collate="Spanish_Colombia.1252" lc-ctype="Spanish_Colombia.1252" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layer="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="resoluciones_new" layer="0" rect-visible="true" fill-color="#fa902c">
+	<role name="postgres"/>
+	<comment><![CDATA[Modelo de datos del esquema para el nuevo sistema de resoluciones]]></comment>
+</schema>
+
+<sequence name="resolucion_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="resolucion" layer="0" collapse-mode="2" max-obj-count="22" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Resolución de vinculación de docentes ]]></comment>
+	<position x="620" y="360"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.resolucion_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero_resolucion" not-null="true" default-value="10">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="fecha_expedicion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="vigencia" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dependencia_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipo_resolucion_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="preambulo_resolucion" not-null="true">
+		<type name="text" length="3000"/>
+	</column>
+	<column name="consideracion_resolucion" not-null="true">
+		<type name="text" length="15000"/>
+	</column>
+	<column name="numero_semanas" not-null="true" default-value="0">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="periodo" not-null="true" default-value="0">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="titulo">
+		<type name="text" length="2000"/>
+	</column>
+	<column name="dependencia_firma_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="vigencia_carga">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="periodo_carga">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cuadro_responsabilidades">
+		<type name="json" length="0"/>
+	</column>
+	<column name="nuxeo_uid">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_resolucion" type="pk-constr" table="resoluciones_new.resolucion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="vinculacion_docente_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="vinculacion_docente" layer="0" collapse-mode="2" max-obj-count="25" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Contiene información detallada de la vinculación del docente]]></comment>
+	<position x="1680" y="80"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.vinculacion_docente_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero_contrato">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="vigencia">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="persona_id" not-null="true">
+		<type name="numeric" length="15" precision="0"/>
+	</column>
+	<column name="numero_horas_semanales" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero_semanas" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="punto_salarial_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="salario_minimo_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="resolucion_vinculacion_docente_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dedicacion_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="proyecto_curricular_id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="valor_contrato">
+		<type name="numeric" length="16" precision="3"/>
+	</column>
+	<column name="categoria">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="emerito" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="dependencia_academica">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero_rp">
+		<type name="numeric" length="6" precision="0"/>
+	</column>
+	<column name="vigencia_rp">
+		<type name="numeric" length="4" precision="0"/>
+	</column>
+	<column name="fecha_inicio">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_contrato_docente" type="pk-constr" table="resoluciones_new.vinculacion_docente">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uq_numero_contrato_vinculacion_docente" type="uq-constr" table="resoluciones_new.vinculacion_docente">
+		<columns names="numero_contrato,vigencia" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="resolucion_vinculacion_docente_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="resolucion_vinculacion_docente" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Detalles de lavinculación del docente por medio de la resolución]]></comment>
+	<position x="1080" y="40"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.resolucion_vinculacion_docente_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="facultad_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dedicacion" not-null="true">
+		<type name="character varying" length="12"/>
+	</column>
+	<column name="nivel_academico" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_resolucion_vinculacion_docente" type="pk-constr" table="resoluciones_new.resolucion_vinculacion_docente">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="componente_resolucion_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="componente_resolucion" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Textos que componen una resolución, hace referencia a los diferentes artículos on sus respectivos parágrafos, si existen. ]]></comment>
+	<position x="20" y="80"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.componente_resolucion_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="resolucion_id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="texto" not-null="true">
+		<type name="text" length="3000"/>
+	</column>
+	<column name="tipo_componente" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="componente_resolucion_padre">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_componente_resolucion" type="pk-constr" table="resoluciones_new.componente_resolucion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="resolucion_estado_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="resolucion_estado" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Estado de la resolución]]></comment>
+	<position x="60" y="720"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.resolucion_estado_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="usuario">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="estado_resolucion_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="resolucion_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_resolucion_estado" type="pk-constr" table="resoluciones_new.resolucion_estado">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="modificacion_resolucion_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="modificacion_resolucion" layer="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Modificaciones realizadas a una resolución por medio de otra]]></comment>
+	<position x="640" y="900"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.modificacion_resolucion_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="resolucion_nueva_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="resolucion_anterior_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_modificacion_resolucion" type="pk-constr" table="resoluciones_new.modificacion_resolucion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="modificacion_vinculacion_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="modificacion_vinculacion" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Modificaciones realizadas a la vinculación de un docente a traves de la modificación de una resolución]]></comment>
+	<position x="1560" y="740"/>
+	<column name="id" not-null="true" sequence="resoluciones_new.modificacion_vinculacion_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="modificacion_resolucion_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="vinculacion_docente_cancelada_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="vinculacion_docente_registrada_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="horas">
+		<type name="numeric" length="2" precision="0"/>
+	</column>
+	<column name="activo" default-value="true">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_modificacion_vinculacion" type="pk-constr" table="resoluciones_new.modificacion_vinculacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="Estado resolucion" layer="0" z-value="0" font-size="9">
+	<position x="40" y="940"/>
+	<comment><![CDATA[El campo estado_resolucion_id hace referencia a los diferentes estados 
+que puede tener una resolución que se encuentran almacenados en la
+tabla parametro del esquema parametros recogidos por el registro en la 
+tabla tipo_parametro con el nombre Estados de una Resolucion.]]></comment>
+</textbox>
+
+<textbox name="Resolucion" layer="0" z-value="0" font-size="9">
+	<position x="560" y="200"/>
+	<comment><![CDATA[El campo tipo_tesolucion_id hace referencia a los tipos de resolución 
+registrados en la tabla parametro del esquema parametros bajo el 
+registro en la tabla tipo_parametro con el nombre Tipos de resolución.
+
+Los campos dependencia_id, dependencia_firma_id y facultad_id hacen referencia 
+a la tabla dependencia del esquema oikos, su valor puede ser diferente en cada caso
+
+El campo nuxeo_uid se usa para recuperar el pdf de la resolución a 
+traves del gestor documental, coincide con el mismo campo en la tabla 
+documento del esquema documentos]]></comment>
+</textbox>
+
+<textbox name="Vinculacion" layer="0" z-value="0" font-size="9">
+	<position x="1140" y="400"/>
+	<comment><![CDATA[El campo persona_id es el numero de documento del docente, no es un id que
+referencie a otros esquemas.
+
+El campo salario_minimo_id hace referencia al histórico de salarios por vigencia 
+registrados en la tabla parametro_periodo del esquema parametros.
+
+El campo dedicacion_id hace referencia a los tipos de vinculacion de los docentes
+de vinculacion especial registrados en la tabla parametro del esquema parametros
+relacionados con el registro en la tabla tipo_parametro con el nombre Vinculacion.
+
+El campo punto_salarial_id hace referencia a la tabla parametro del esquema parametros.
+
+El campo proyecto_curricular_id hace referencia a la tabla dependencia del 
+esquema oikos, estos a su vez se referencian a traves de homologacion con 
+registros en el sistema Urano.]]></comment>
+</textbox>
+
+<table name="disponibilidad_vinculacion" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
+	<schema name="resoluciones_new"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabla que relaciona la vinculacióin de un docente con las diferentes disponibilidades presupuestales de las que llegue a obtener recursos]]></comment>
+	<position x="2300" y="300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[identificador de la tabla]]></comment>
+	</column>
+	<column name="disponibilidad" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Numero de la disponibilidad presupuestal]]></comment>
+	</column>
+	<column name="rubro" not-null="true">
+		<type name="character varying" length="50"/>
+		<comment><![CDATA[Nombre clave del rubro como lo maneja Titan]]></comment>
+	</column>
+	<column name="nombre_rubro">
+		<type name="character varying" length="50"/>
+		<comment><![CDATA[Nombre completo del rubro como se maneja en presupuesto]]></comment>
+	</column>
+	<column name="valor">
+		<type name="numeric" length="16" precision="3"/>
+	</column>
+	<column name="activo">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_creacion" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha de creación del registro]]></comment>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="pk_disponibilidad_vinculacion" type="pk-constr" table="resoluciones_new.disponibilidad_vinculacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="vinculacion_docente_id" index="5"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="fk_vinculacion_docente" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="vinculacion_docente_has_many_disponibilidad_vinculacion" type="rel1n" layer="0"
+	 src-col-pattern="{st}_{sc}"
+	 pk-pattern="pk_{dt}" uq-pattern="uq_{dt}"
+	 src-fk-pattern="fk_{st}"
+	 custom-color="#5f95ca"
+	 src-table="resoluciones_new.vinculacion_docente"
+	 dst-table="resoluciones_new.disponibilidad_vinculacion"
+	 src-required="false" dst-required="false"
+	upd-action="CASCADE"
+	del-action="RESTRICT">
+	<label ref-type="name-label">
+		<position x="117.654" y="-102.523"/>
+	</label>
+</relationship>
+
+<textbox name="disponibilidad" layer="0" z-value="0" font-size="9">
+	<position x="2300" y="540"/>
+	<comment><![CDATA[El campo disponibilidad hace referencia al numero de CDP 
+en el subsistema Kronos
+
+El campo rubro hace referencia a un rubro dentro del CDP 
+seleccionado.]]></comment>
+</textbox>
+
+<constraint name="fk_vinculacion_docente_resolucion_vinculacion_docente" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="resoluciones_new.resolucion_vinculacion_docente" table="resoluciones_new.vinculacion_docente">
+	<columns names="resolucion_vinculacion_docente_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_resolucion_vinculacion_docente_resolucion" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="resoluciones_new.resolucion" table="resoluciones_new.resolucion_vinculacion_docente">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_componente_resolucion_resolucion" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="resoluciones_new.resolucion" table="resoluciones_new.componente_resolucion">
+	<columns names="resolucion_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_componente_resolucion_componente_resolucion_padre" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="resoluciones_new.componente_resolucion" table="resoluciones_new.componente_resolucion">
+	<columns names="componente_resolucion_padre" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_resolucion_estado_resolucion" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="resoluciones_new.resolucion" table="resoluciones_new.resolucion_estado">
+	<columns names="resolucion_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_modificacion_resolucion_resolucion_nueva" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="resoluciones_new.resolucion" table="resoluciones_new.modificacion_resolucion">
+	<columns names="resolucion_nueva_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_modificacion_resolucion_resolucion_anterior" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="resoluciones_new.resolucion" table="resoluciones_new.modificacion_resolucion">
+	<columns names="resolucion_anterior_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_modificacion_vinculacion_vinculacion_docente_cancelada" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="resoluciones_new.vinculacion_docente" table="resoluciones_new.modificacion_vinculacion">
+	<columns names="vinculacion_docente_cancelada_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_modificacion_vinculacion_vinculacion_docente_registrada" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="resoluciones_new.vinculacion_docente" table="resoluciones_new.modificacion_vinculacion">
+	<columns names="vinculacion_docente_registrada_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_modificacion_vinculacion_modificacion_resolucion" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="resoluciones_new.modificacion_resolucion" table="resoluciones_new.modificacion_vinculacion">
+	<columns names="modificacion_resolucion_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_vinculacion_docente_resolucion_vinculacion_docente" type="relfk" layer="0"
+	 custom-color="#41a9bd"
+	 src-table="resoluciones_new.vinculacion_docente"
+	 dst-table="resoluciones_new.resolucion_vinculacion_docente" reference-fk="fk_vinculacion_docente_resolucion_vinculacion_docente"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-93.8458" y="36.984"/>
+	</label>
+</relationship>
+
+<relationship name="rel_resolucion_vinculacion_docente_resolucion" type="relfk" layer="0"
+	 custom-color="#688eb9"
+	 src-table="resoluciones_new.resolucion_vinculacion_docente"
+	 dst-table="resoluciones_new.resolucion" reference-fk="fk_resolucion_vinculacion_docente_resolucion"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="84.1813" y="-41.4132"/>
+	</label>
+</relationship>
+
+<relationship name="rel_componente_resolucion_resolucion" type="relfk" layer="0"
+	 custom-color="#a58680"
+	 src-table="resoluciones_new.componente_resolucion"
+	 dst-table="resoluciones_new.resolucion" reference-fk="fk_componente_resolucion_resolucion"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-56.63" y="-52.6715"/>
+	</label>
+</relationship>
+
+<relationship name="rel_componente_resolucion_componente_resolucion" type="relfk" layer="0"
+	 custom-color="#dd6f26"
+	 src-table="resoluciones_new.componente_resolucion"
+	 dst-table="resoluciones_new.componente_resolucion" reference-fk="fk_componente_resolucion_componente_resolucion_padre"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="540.234" y="166.15"/>
+	<position x="540.234" y="57"/>
+	<position x="351.49" y="57"/>
+	</line>
+</relationship>
+
+<relationship name="rel_resolucion_estado_resolucion" type="relfk" layer="0"
+	 custom-color="#a3975d"
+	 src-table="resoluciones_new.resolucion_estado"
+	 dst-table="resoluciones_new.resolucion" reference-fk="fk_resolucion_estado_resolucion"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-19.3458" y="-27.8176"/>
+	</label>
+</relationship>
+
+<relationship name="rel_modificacion_resolucion_resolucion" type="relfk" layer="0"
+	 custom-color="#20ee25"
+	 src-table="resoluciones_new.modificacion_resolucion"
+	 dst-table="resoluciones_new.resolucion" reference-fk="fk_modificacion_resolucion_resolucion_nueva"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="107.205" y="-58.9323"/>
+	</label>
+</relationship>
+
+<relationship name="rel_modificacion_resolucion_resolucion1" type="relfk" layer="0"
+	 custom-color="#ca488b"
+	 src-table="resoluciones_new.modificacion_resolucion"
+	 dst-table="resoluciones_new.resolucion" reference-fk="fk_modificacion_resolucion_resolucion_anterior"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-76.316" y="21.0677"/>
+	</label>
+</relationship>
+
+<relationship name="rel_modificacion_vinculacion_vinculacion_docente" type="relfk" layer="0"
+	 custom-color="#699261"
+	 src-table="resoluciones_new.modificacion_vinculacion"
+	 dst-table="resoluciones_new.vinculacion_docente" reference-fk="fk_modificacion_vinculacion_vinculacion_docente_cancelada"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="20.6499" y="-68.5323"/>
+	</label>
+</relationship>
+
+<relationship name="rel_modificacion_vinculacion_vinculacion_docente1" type="relfk" layer="0"
+	 custom-color="#24409c"
+	 src-table="resoluciones_new.modificacion_vinculacion"
+	 dst-table="resoluciones_new.vinculacion_docente" reference-fk="fk_modificacion_vinculacion_vinculacion_docente_registrada"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_modificacion_vinculacion_modificacion_resolucion" type="relfk" layer="0"
+	 custom-color="#ef6fc7"
+	 src-table="resoluciones_new.modificacion_vinculacion"
+	 dst-table="resoluciones_new.modificacion_resolucion" reference-fk="fk_modificacion_vinculacion_modificacion_resolucion"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-64.8458" y="-18.9893"/>
+	</label>
+</relationship>
+
+</dbmodel>
