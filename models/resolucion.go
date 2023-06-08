@@ -11,25 +11,27 @@ import (
 )
 
 type Resolucion struct {
-	Id                      int       `orm:"column(id);pk;auto"`
-	NumeroResolucion        string    `orm:"column(numero_resolucion)"`
-	FechaExpedicion         time.Time `orm:"column(fecha_expedicion);type(timestamp without time zone);null"`
-	Vigencia                int       `orm:"column(vigencia)"`
-	DependenciaId           int       `orm:"column(dependencia_id)"`
-	TipoResolucionId        int       `orm:"column(tipo_resolucion_id)"`
-	PreambuloResolucion     string    `orm:"column(preambulo_resolucion)"`
-	ConsideracionResolucion string    `orm:"column(consideracion_resolucion)"`
-	NumeroSemanas           int       `orm:"column(numero_semanas)"`
-	Periodo                 int       `orm:"column(periodo)"`
-	Titulo                  string    `orm:"column(titulo);null"`
-	DependenciaFirmaId      int       `orm:"column(dependencia_firma_id);null"`
-	VigenciaCarga           int       `orm:"column(vigencia_carga);null"`
-	PeriodoCarga            int       `orm:"column(periodo_carga);null"`
-	CuadroResponsabilidades string    `orm:"column(cuadro_responsabilidades);type(json);null"`
-	NuxeoUid                string    `orm:"column(nuxeo_uid);null"`
-	Activo                  bool      `orm:"column(activo);null"`
-	FechaCreacion           string    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion       string    `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	Id                      int        `orm:"column(id);pk;auto"`
+	NumeroResolucion        string     `orm:"column(numero_resolucion)"`
+	FechaExpedicion         time.Time  `orm:"column(fecha_expedicion);type(timestamp without time zone);null"`
+	Vigencia                int        `orm:"column(vigencia)"`
+	DependenciaId           int        `orm:"column(dependencia_id)"`
+	TipoResolucionId        int        `orm:"column(tipo_resolucion_id)"`
+	PreambuloResolucion     string     `orm:"column(preambulo_resolucion)"`
+	ConsideracionResolucion string     `orm:"column(consideracion_resolucion)"`
+	NumeroSemanas           int        `orm:"column(numero_semanas)"`
+	Periodo                 int        `orm:"column(periodo)"`
+	Titulo                  string     `orm:"column(titulo);null"`
+	DependenciaFirmaId      int        `orm:"column(dependencia_firma_id);null"`
+	VigenciaCarga           int        `orm:"column(vigencia_carga);null"`
+	PeriodoCarga            int        `orm:"column(periodo_carga);null"`
+	CuadroResponsabilidades string     `orm:"column(cuadro_responsabilidades);type(json);null"`
+	NuxeoUid                string     `orm:"column(nuxeo_uid);null"`
+	Activo                  bool       `orm:"column(activo);null"`
+	FechaCreacion           string     `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion       string     `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	FechaInicio             *time.Time `orm:"column(fecha_inicio);type(timestamp without time zone);null"`
+	FechaFIn                *time.Time `orm:"column(fecha_fin);type(timestamp without time zone);null"`
 }
 
 func (t *Resolucion) TableName() string {

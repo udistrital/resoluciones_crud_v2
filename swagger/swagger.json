@@ -1557,6 +1557,14 @@
                     "type": "string",
                     "format": "datetime"
                 },
+                "FechaFIn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaInicio": {
+                    "type": "string",
+                    "format": "datetime"
+                },
                 "FechaModificacion": {
                     "type": "string"
                 },
