@@ -79,9 +79,14 @@ Pruebas unitarias
 ## Estado CI
 
 
-| Develop | Relese 0.0.1 | Master |
-| -- | -- | -- |
-| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/resoluciones_crud_v2/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/resoluciones_crud_v2) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/resoluciones_crud_v2/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/resoluciones_crud_v2) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/resoluciones_crud_v2/status.svg?ref=refs/heads/master)](https://hubci.portaloas.udistrital.edu.co/udistrital/resoluciones_crud_v2) |
+| Develop | Relese 0.0.1 | Master | Sonar |
+| -- | -- | -- | -- |
+| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/resoluciones_crud_v2/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/resoluciones_crud_v2) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/resoluciones_crud_v2/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/resoluciones_crud_v2) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/resoluciones_crud_v2/status.svg?ref=refs/heads/master)](https://hubci.portaloas.udistrital.edu.co/udistrital/resoluciones_crud_v2) | [![Quality Gate Status](https://sonarqube.portaloas.udistrital.edu.co/api/project_badges/measure?project=udistrital%3Aresoluciones_crud_v2&metric=alert_status)](https://sonarqube.portaloas.udistrital.edu.co/dashboard?id=udistrital%3Aresoluciones_crud_v2) |
+
+
+## Modelo de datos
+
+[Modelo de datos](database/resoluciones_new.png) - [Pgmodeler](database/resoluciones_new.dbm)
 
 
 ## Licencia
