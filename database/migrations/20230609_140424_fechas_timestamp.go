@@ -9,22 +9,22 @@ import (
 )
 
 // DO NOT MODIFY
-type CamposFechas_20230608_174151 struct {
+type FechasTimestamp_20230609_140424 struct {
 	migration.Migration
 }
 
 // DO NOT MODIFY
 func init() {
-	m := &CamposFechas_20230608_174151{}
-	m.Created = "20230608_174151"
+	m := &FechasTimestamp_20230609_140424{}
+	m.Created = "20230609_140424"
 
-	migration.Register("CamposFechas_20230608_174151", m)
+	migration.Register("FechasTimestamp_20230609_140424", m)
 }
 
 // Run the migrations
-func (m *CamposFechas_20230608_174151) Up() {
+func (m *FechasTimestamp_20230609_140424) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-	file, err := ioutil.ReadFile("../scripts/20230608_174151_campos_fechas_up.sql")
+	file, err := ioutil.ReadFile("../scripts/20230609_140424_fechas_timestamp_up.sql")
 
 	if err != nil {
 		// handle error
@@ -42,9 +42,9 @@ func (m *CamposFechas_20230608_174151) Up() {
 }
 
 // Reverse the migrations
-func (m *CamposFechas_20230608_174151) Down() {
+func (m *FechasTimestamp_20230609_140424) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
-	file, err := ioutil.ReadFile("../scripts/20230608_174151_campos_fechas_down.sql")
+	file, err := ioutil.ReadFile("../scripts/20230609_140424_fechas_timestamp_down.sql")
 
 	if err != nil {
 		// handle error

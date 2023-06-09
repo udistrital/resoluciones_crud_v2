@@ -1033,7 +1033,7 @@ definitions:
       FechaExpedicion:
         type: string
         format: datetime
-      FechaFIn:
+      FechaFin:
         type: string
         format: datetime
       FechaInicio:
