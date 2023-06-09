@@ -31,7 +31,7 @@ type Resolucion struct {
 	FechaCreacion           string     `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion       string     `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 	FechaInicio             *time.Time `orm:"column(fecha_inicio);type(timestamp without time zone);null"`
-	FechaFIn                *time.Time `orm:"column(fecha_fin);type(timestamp without time zone);null"`
+	FechaFin                *time.Time `orm:"column(fecha_fin);type(timestamp without time zone);null"`
 }
 
 func (t *Resolucion) TableName() string {

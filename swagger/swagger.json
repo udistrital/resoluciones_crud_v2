@@ -1557,7 +1557,7 @@
                     "type": "string",
                     "format": "datetime"
                 },
-                "FechaFIn": {
+                "FechaFin": {
                     "type": "string",
                     "format": "datetime"
                 },
