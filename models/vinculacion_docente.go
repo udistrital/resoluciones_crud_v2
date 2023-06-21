@@ -31,6 +31,7 @@ type VinculacionDocente struct {
 	Activo                         bool                          `orm:"column(activo);null"`
 	FechaCreacion                  string                        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion              string                        `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	NumeroHorasTrabajadas          int                           `orm:"column(numero_horas_trabajadas)"`
 }
 
 func (t *VinculacionDocente) TableName() string {
