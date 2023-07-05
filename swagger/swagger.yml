@@ -1057,6 +1057,9 @@ definitions:
       BonificacionServicios:
         type: number
         format: double
+      Cdp:
+        type: integer
+        format: int64
       Cedula:
         type: integer
         format: int64
