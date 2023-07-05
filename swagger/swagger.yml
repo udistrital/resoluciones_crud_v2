@@ -467,6 +467,30 @@ paths:
           description: '{string} delete success!'
         "404":
           description: not found resource
+  /reporte_financiera/:
+    post:
+      tags:
+      - reporte_financiera
+      description: Crea el reporte de financiera
+      operationId: ReporteFinancieraController.Reporte Financiera
+      parameters:
+      - in: body
+        name: body
+        description: body for DatosReporte content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DatosReporte'
+      responses:
+        "201":
+          description: ""
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/models.ReporteFinanciera'
+        "400":
+          description: bad request
+        "500":
+          description: Internal server error
   /resolucion/:
     get:
       tags:
@@ -948,6 +972,20 @@ definitions:
         type: string
       TipoComponente:
         type: string
+  models.DatosReporte:
+    title: DatosReporte
+    type: object
+    properties:
+      Facultad:
+        type: integer
+        format: int64
+      NivelAcademico:
+        type: string
+      Resolucion:
+        type: string
+      Vigencia:
+        type: integer
+        format: int64
   models.DisponibilidadVinculacion:
     title: DisponibilidadVinculacion
     type: object
@@ -1012,6 +1050,51 @@ definitions:
         $ref: '#/definitions/models.VinculacionDocente'
       VinculacionDocenteRegistradaId:
         $ref: '#/definitions/models.VinculacionDocente'
+  models.ReporteFinanciera:
+    title: ReporteFinanciera
+    type: object
+    properties:
+      BonificacionServicios:
+        type: number
+        format: double
+      Cedula:
+        type: integer
+        format: int64
+      Cesantias:
+        type: number
+        format: double
+      Horas:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      InteresesCesantias:
+        type: number
+        format: double
+      PrimaNavidad:
+        type: number
+        format: double
+      PrimaServicios:
+        type: number
+        format: double
+      PrimaVacaciones:
+        type: number
+        format: double
+      Resolucion:
+        type: string
+      Semanas:
+        type: integer
+        format: int64
+      SueldoBasico:
+        type: number
+        format: double
+      Total:
+        type: number
+        format: double
+      Vacaciones:
+        type: number
+        format: double
   models.Resolucion:
     title: Resolucion
     type: object
@@ -1196,3 +1279,6 @@ tags:
 - name: disponibilidad_vinculacion
   description: |
     DisponibilidadVinculacionController operations for DisponibilidadVinculacion
+- name: reporte_financiera
+  description: |
+    Reporte_financieraController operations for Gestion_vinculaciones

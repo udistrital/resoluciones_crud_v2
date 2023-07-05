@@ -63,6 +63,12 @@ func init() {
 				&controllers.DisponibilidadVinculacionController{},
 			),
 		),
+
+		beego.NSNamespace("/reporte_financiera",
+			beego.NSInclude(
+				&controllers.ReporteFinancieraController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
