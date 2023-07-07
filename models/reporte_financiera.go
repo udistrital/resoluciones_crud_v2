@@ -38,9 +38,9 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
 			v.persona_id as cedula,
-			SUM(DISTINCT v.numero_horas_semanales) as Horas,
+			SUM(v.numero_horas_semanales) filter (WHERE dv.rubro='SueldoBasico') as Horas,
 			r.numero_semanas as Semanas,
-			SUM(DISTINCT v.valor_contrato) as Total,
+			SUM(v.valor_contrato) filter (WHERE dv.rubro='SueldoBasico') as Total,
 			SUM(DISTINCT dv.disponibilidad) as cdp,
 			SUM(dv.valor) filter (WHERE dv.rubro='SueldoBasico') as sueldobasico,
 			SUM(dv.valor) filter (WHERE dv.rubro='PrimaNavidad') as primanavidad,
