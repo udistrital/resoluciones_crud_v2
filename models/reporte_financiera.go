@@ -57,6 +57,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			AND r.numero_resolucion='` + m.Resolucion + `' AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
 			AND r.tipo_resolucion_id=583
 			AND re.estado_resolucion_id=602
+			AND v.activo=true
 		GROUP BY r.id, r.numero_resolucion, v.persona_id, r.numero_semanas
 		ORDER BY r.id DESC;`
 	_, err = o.Raw(query).QueryRows(&reporte)
