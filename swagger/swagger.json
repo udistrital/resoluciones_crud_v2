@@ -1630,6 +1630,10 @@
                     "type": "number",
                     "format": "double"
                 },
+                "ProyectoCurricular": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "Resolucion": {
                     "type": "string"
                 },

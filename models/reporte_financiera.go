@@ -15,6 +15,7 @@ type ReporteFinanciera struct {
 	Semanas               int     `orm:"column(semanas);null"`
 	Total                 float64 `orm:"column(total);null"`
 	Cdp                   int     `orm:"column(cdp);null"`
+	ProyectoCurricular    int     `orm:"column(proyectocurricular);null"`
 	SueldoBasico          float64 `orm:"column(sueldobasico);null"`
 	PrimaNavidad          float64 `orm:"column(primanavidad);null"`
 	Vacaciones            float64 `orm:"column(vacaciones);null"`
@@ -42,6 +43,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			r.numero_semanas as Semanas,
 			SUM(v.valor_contrato) filter (WHERE dv.rubro='SueldoBasico') as Total,
 			SUM(DISTINCT dv.disponibilidad) as cdp,
+			v.proyecto_curricular_id as proyectocurricular,
 			SUM(dv.valor) filter (WHERE dv.rubro='SueldoBasico') as sueldobasico,
 			SUM(dv.valor) filter (WHERE dv.rubro='PrimaNavidad') as primanavidad,
 			SUM(dv.valor) filter (WHERE dv.rubro='Vacaciones') as vacaciones,
@@ -58,7 +60,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			AND r.tipo_resolucion_id=583
 			AND re.estado_resolucion_id=602
 			AND v.activo=true
-		GROUP BY r.id, r.numero_resolucion, v.persona_id, r.numero_semanas
+		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
 	_, err = o.Raw(query).QueryRows(&reporte)
 	return reporte, nil
