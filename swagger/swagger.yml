@@ -1,0 +1,1290 @@
+swagger: "2.0"
+info:
+  title: Resoluciones CRUD Version 2
+  description: Nueva versión de API CRUD para el sistema de Resoluciones
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: computo@udistrital.edu.co
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /componente_resolucion/:
+    get:
+      tags:
+      - componente_resolucion
+      description: get ComponenteResolucion
+      operationId: ComponenteResolucionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ComponenteResolucion'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - componente_resolucion
+      description: create ComponenteResolucion
+      operationId: ComponenteResolucionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ComponenteResolucion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ComponenteResolucion'
+      responses:
+        "201":
+          description: '{int} models.ComponenteResolucion'
+        "400":
+          description: the request contains incorrect syntax
+  /componente_resolucion/{id}:
+    get:
+      tags:
+      - componente_resolucion
+      description: get ComponenteResolucion by id
+      operationId: ComponenteResolucionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ComponenteResolucion'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - componente_resolucion
+      description: update the ComponenteResolucion
+      operationId: ComponenteResolucionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ComponenteResolucion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ComponenteResolucion'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ComponenteResolucion'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - componente_resolucion
+      description: delete the ComponenteResolucion
+      operationId: ComponenteResolucionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /disponibilidad_vinculacion/:
+    get:
+      tags:
+      - disponibilidad_vinculacion
+      description: get DisponibilidadVinculacion
+      operationId: DisponibilidadVinculacionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DisponibilidadVinculacion'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - disponibilidad_vinculacion
+      description: create DisponibilidadVinculacion
+      operationId: DisponibilidadVinculacionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for DisponibilidadVinculacion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DisponibilidadVinculacion'
+      responses:
+        "201":
+          description: '{int} models.DisponibilidadVinculacion'
+        "400":
+          description: the request contains incorrect syntax
+  /disponibilidad_vinculacion/{id}:
+    get:
+      tags:
+      - disponibilidad_vinculacion
+      description: get DisponibilidadVinculacion by id
+      operationId: DisponibilidadVinculacionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DisponibilidadVinculacion'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - disponibilidad_vinculacion
+      description: update the DisponibilidadVinculacion
+      operationId: DisponibilidadVinculacionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for DisponibilidadVinculacion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DisponibilidadVinculacion'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DisponibilidadVinculacion'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - disponibilidad_vinculacion
+      description: delete the DisponibilidadVinculacion
+      operationId: DisponibilidadVinculacionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /modificacion_resolucion/:
+    get:
+      tags:
+      - modificacion_resolucion
+      description: get ModificacionResolucion
+      operationId: ModificacionResolucionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ModificacionResolucion'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - modificacion_resolucion
+      description: create ModificacionResolucion
+      operationId: ModificacionResolucionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ModificacionResolucion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ModificacionResolucion'
+      responses:
+        "201":
+          description: '{int} models.ModificacionResolucion'
+        "400":
+          description: the request contains incorrect syntax
+  /modificacion_resolucion/{id}:
+    get:
+      tags:
+      - modificacion_resolucion
+      description: get ModificacionResolucion by id
+      operationId: ModificacionResolucionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ModificacionResolucion'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - modificacion_resolucion
+      description: update the ModificacionResolucion
+      operationId: ModificacionResolucionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ModificacionResolucion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ModificacionResolucion'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ModificacionResolucion'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - modificacion_resolucion
+      description: delete the ModificacionResolucion
+      operationId: ModificacionResolucionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /modificacion_vinculacion/:
+    get:
+      tags:
+      - modificacion_vinculacion
+      description: get ModificacionVinculacion
+      operationId: ModificacionVinculacionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ModificacionVinculacion'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - modificacion_vinculacion
+      description: create ModificacionVinculacion
+      operationId: ModificacionVinculacionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ModificacionVinculacion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ModificacionVinculacion'
+      responses:
+        "201":
+          description: '{int} models.ModificacionVinculacion'
+        "400":
+          description: the request contains incorrect syntax
+  /modificacion_vinculacion/{id}:
+    get:
+      tags:
+      - modificacion_vinculacion
+      description: get ModificacionVinculacion by id
+      operationId: ModificacionVinculacionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ModificacionVinculacion'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - modificacion_vinculacion
+      description: update the ModificacionVinculacion
+      operationId: ModificacionVinculacionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ModificacionVinculacion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ModificacionVinculacion'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ModificacionVinculacion'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - modificacion_vinculacion
+      description: delete the ModificacionVinculacion
+      operationId: ModificacionVinculacionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /reporte_financiera/:
+    post:
+      tags:
+      - reporte_financiera
+      description: Crea el reporte de financiera
+      operationId: ReporteFinancieraController.Reporte Financiera
+      parameters:
+      - in: body
+        name: body
+        description: body for DatosReporte content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DatosReporte'
+      responses:
+        "201":
+          description: ""
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/models.ReporteFinanciera'
+        "400":
+          description: bad request
+        "500":
+          description: Internal server error
+  /resolucion/:
+    get:
+      tags:
+      - resolucion
+      description: get Resolucion
+      operationId: ResolucionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Resolucion'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - resolucion
+      description: create Resolucion
+      operationId: ResolucionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Resolucion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Resolucion'
+      responses:
+        "201":
+          description: '{int} models.Resolucion'
+        "400":
+          description: the request contains incorrect syntax
+  /resolucion/{id}:
+    get:
+      tags:
+      - resolucion
+      description: get Resolucion by id
+      operationId: ResolucionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Resolucion'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - resolucion
+      description: update the Resolucion
+      operationId: ResolucionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Resolucion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Resolucion'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Resolucion'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - resolucion
+      description: delete the Resolucion
+      operationId: ResolucionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /resolucion_estado/:
+    get:
+      tags:
+      - resolucion_estado
+      description: get ResolucionEstado
+      operationId: ResolucionEstadoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ResolucionEstado'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - resolucion_estado
+      description: create ResolucionEstado
+      operationId: ResolucionEstadoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ResolucionEstado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResolucionEstado'
+      responses:
+        "201":
+          description: '{int} models.ResolucionEstado'
+        "400":
+          description: the request contains incorrect syntax
+  /resolucion_estado/{id}:
+    get:
+      tags:
+      - resolucion_estado
+      description: get ResolucionEstado by id
+      operationId: ResolucionEstadoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ResolucionEstado'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - resolucion_estado
+      description: update the ResolucionEstado
+      operationId: ResolucionEstadoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ResolucionEstado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResolucionEstado'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ResolucionEstado'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - resolucion_estado
+      description: delete the ResolucionEstado
+      operationId: ResolucionEstadoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /resolucion_vinculacion_docente/:
+    get:
+      tags:
+      - resolucion_vinculacion_docente
+      description: get ResolucionVinculacionDocente
+      operationId: ResolucionVinculacionDocenteController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ResolucionVinculacionDocente'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - resolucion_vinculacion_docente
+      description: create ResolucionVinculacionDocente
+      operationId: ResolucionVinculacionDocenteController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ResolucionVinculacionDocente content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResolucionVinculacionDocente'
+      responses:
+        "201":
+          description: '{int} models.ResolucionVinculacionDocente'
+        "400":
+          description: the request contains incorrect syntax
+  /resolucion_vinculacion_docente/{id}:
+    get:
+      tags:
+      - resolucion_vinculacion_docente
+      description: get ResolucionVinculacionDocente by id
+      operationId: ResolucionVinculacionDocenteController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ResolucionVinculacionDocente'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - resolucion_vinculacion_docente
+      description: update the ResolucionVinculacionDocente
+      operationId: ResolucionVinculacionDocenteController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ResolucionVinculacionDocente content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResolucionVinculacionDocente'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ResolucionVinculacionDocente'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - resolucion_vinculacion_docente
+      description: delete the ResolucionVinculacionDocente
+      operationId: ResolucionVinculacionDocenteController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+  /vinculacion_docente/:
+    get:
+      tags:
+      - vinculacion_docente
+      description: get VinculacionDocente
+      operationId: VinculacionDocenteController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.VinculacionDocente'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - vinculacion_docente
+      description: create VinculacionDocente
+      operationId: VinculacionDocenteController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for VinculacionDocente content
+        required: true
+        schema:
+          $ref: '#/definitions/models.VinculacionDocente'
+      responses:
+        "201":
+          description: '{int} models.VinculacionDocente'
+        "400":
+          description: the request contains incorrect syntax
+  /vinculacion_docente/{id}:
+    get:
+      tags:
+      - vinculacion_docente
+      description: get VinculacionDocente by id
+      operationId: VinculacionDocenteController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.VinculacionDocente'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - vinculacion_docente
+      description: update the VinculacionDocente
+      operationId: VinculacionDocenteController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for VinculacionDocente content
+        required: true
+        schema:
+          $ref: '#/definitions/models.VinculacionDocente'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.VinculacionDocente'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - vinculacion_docente
+      description: delete the VinculacionDocente
+      operationId: VinculacionDocenteController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
+definitions:
+  models.ComponenteResolucion:
+    title: ComponenteResolucion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ComponenteResolucionPadre:
+        $ref: '#/definitions/models.ComponenteResolucion'
+      FechaCreacion:
+        type: string
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Numero:
+        type: integer
+        format: int64
+      ResolucionId:
+        $ref: '#/definitions/models.Resolucion'
+      Texto:
+        type: string
+      TipoComponente:
+        type: string
+  models.DatosReporte:
+    title: DatosReporte
+    type: object
+    properties:
+      Facultad:
+        type: integer
+        format: int64
+      NivelAcademico:
+        type: string
+      Resolucion:
+        type: string
+      Vigencia:
+        type: integer
+        format: int64
+  models.DisponibilidadVinculacion:
+    title: DisponibilidadVinculacion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      Disponibilidad:
+        type: integer
+        format: int64
+      FechaCreacion:
+        type: string
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      NombreRubro:
+        type: string
+      Rubro:
+        type: string
+      Valor:
+        type: number
+        format: double
+      VinculacionDocenteId:
+        $ref: '#/definitions/models.VinculacionDocente'
+  models.ModificacionResolucion:
+    title: ModificacionResolucion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      FechaCreacion:
+        type: string
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      ResolucionAnteriorId:
+        $ref: '#/definitions/models.Resolucion'
+      ResolucionNuevaId:
+        $ref: '#/definitions/models.Resolucion'
+  models.ModificacionVinculacion:
+    title: ModificacionVinculacion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      FechaCreacion:
+        type: string
+      FechaModificacion:
+        type: string
+      Horas:
+        type: number
+        format: double
+      Id:
+        type: integer
+        format: int64
+      ModificacionResolucionId:
+        $ref: '#/definitions/models.ModificacionResolucion'
+      VinculacionDocenteCanceladaId:
+        $ref: '#/definitions/models.VinculacionDocente'
+      VinculacionDocenteRegistradaId:
+        $ref: '#/definitions/models.VinculacionDocente'
+  models.ReporteFinanciera:
+    title: ReporteFinanciera
+    type: object
+    properties:
+      BonificacionServicios:
+        type: number
+        format: double
+      Cdp:
+        type: integer
+        format: int64
+      Cedula:
+        type: integer
+        format: int64
+      Cesantias:
+        type: number
+        format: double
+      Horas:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      InteresesCesantias:
+        type: number
+        format: double
+      PrimaNavidad:
+        type: number
+        format: double
+      PrimaServicios:
+        type: number
+        format: double
+      PrimaVacaciones:
+        type: number
+        format: double
+      ProyectoCurricular:
+        type: integer
+        format: int64
+      Resolucion:
+        type: string
+      Semanas:
+        type: integer
+        format: int64
+      SueldoBasico:
+        type: number
+        format: double
+      Total:
+        type: number
+        format: double
+      Vacaciones:
+        type: number
+        format: double
+  models.Resolucion:
+    title: Resolucion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ConsideracionResolucion:
+        type: string
+      CuadroResponsabilidades:
+        type: string
+      DependenciaFirmaId:
+        type: integer
+        format: int64
+      DependenciaId:
+        type: integer
+        format: int64
+      FechaCreacion:
+        type: string
+      FechaExpedicion:
+        type: string
+        format: datetime
+      FechaFin:
+        type: string
+        format: datetime
+      FechaInicio:
+        type: string
+        format: datetime
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      NumeroResolucion:
+        type: string
+      NumeroSemanas:
+        type: integer
+        format: int64
+      NuxeoUid:
+        type: string
+      Periodo:
+        type: integer
+        format: int64
+      PeriodoCarga:
+        type: integer
+        format: int64
+      PreambuloResolucion:
+        type: string
+      TipoResolucionId:
+        type: integer
+        format: int64
+      Titulo:
+        type: string
+      Vigencia:
+        type: integer
+        format: int64
+      VigenciaCarga:
+        type: integer
+        format: int64
+  models.ResolucionEstado:
+    title: ResolucionEstado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      EstadoResolucionId:
+        type: integer
+        format: int64
+      FechaCreacion:
+        type: string
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      ResolucionId:
+        $ref: '#/definitions/models.Resolucion'
+      Usuario:
+        type: string
+  models.ResolucionVinculacionDocente:
+    title: ResolucionVinculacionDocente
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      Dedicacion:
+        type: string
+      FacultadId:
+        type: integer
+        format: int64
+      FechaCreacion:
+        type: string
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      NivelAcademico:
+        type: string
+  models.VinculacionDocente:
+    title: VinculacionDocente
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      Categoria:
+        type: string
+      DedicacionId:
+        type: integer
+        format: int64
+      DependenciaAcademica:
+        type: integer
+        format: int64
+      FechaCreacion:
+        type: string
+      FechaInicio:
+        type: string
+        format: datetime
+      FechaModificacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      NumeroContrato:
+        type: string
+      NumeroHorasSemanales:
+        type: integer
+        format: int64
+      NumeroHorasTrabajadas:
+        type: integer
+        format: int64
+      NumeroRp:
+        type: number
+        format: double
+      NumeroSemanas:
+        type: integer
+        format: int64
+      PersonaId:
+        type: number
+        format: double
+      ProyectoCurricularId:
+        type: integer
+        format: int32
+      PuntoSalarialId:
+        type: integer
+        format: int64
+      ResolucionVinculacionDocenteId:
+        $ref: '#/definitions/models.ResolucionVinculacionDocente'
+      SalarioMinimoId:
+        type: integer
+        format: int64
+      ValorContrato:
+        type: number
+        format: double
+      Vigencia:
+        type: integer
+        format: int64
+      VigenciaRp:
+        type: number
+        format: double
+tags:
+- name: resolucion_estado
+  description: |
+    ResolucionEstadoController operations for ResolucionEstado
+- name: modificacion_resolucion
+  description: |
+    ModificacionResolucionController operations for ModificacionResolucion
+- name: modificacion_vinculacion
+  description: |
+    ModificacionVinculacionController operations for ModificacionVinculacion
+- name: componente_resolucion
+  description: |
+    ComponenteResolucionController operations for ComponenteResolucion
+- name: resolucion_vinculacion_docente
+  description: |
+    ResolucionVinculacionDocenteController operations for ResolucionVinculacionDocente
+- name: resolucion
+  description: |
+    ResolucionController operations for Resolucion
+- name: vinculacion_docente
+  description: |
+    VinculacionDocenteController operations for VinculacionDocente
+- name: disponibilidad_vinculacion
+  description: |
+    DisponibilidadVinculacionController operations for DisponibilidadVinculacion
+- name: reporte_financiera
+  description: |
+    Reporte_financieraController operations for Gestion_vinculaciones

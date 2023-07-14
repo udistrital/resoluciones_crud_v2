@@ -47,6 +47,7 @@ func (c *ResolucionVinculacionDocenteController) Post() {
 			c.Data["mesaage"] = "Error service POST: The request contains an incorrect data type or an invalid parameter"
 			c.Abort("400")
 		}
+
 	} else {
 		logs.Error(err)
 		c.Data["mesaage"] = "Error service POST: The request contains an incorrect data type or an invalid parameter"
