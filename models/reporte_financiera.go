@@ -62,6 +62,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			AND v.numero_contrato is not null
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
+	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
 	return reporte, nil
 }
