@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -25,6 +26,8 @@ func (c *ReporteFinancieraController) Post() {
 	var v models.DatosReporte
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if reporte, err := models.ReporteFinancieraQuery(&v); err == nil {
+			fmt.Println("REPORTE ", reporte)
+			fmt.Println("REPORTE ", reporte[0])
 			c.Ctx.Output.SetStatus(201)
 
 			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "201", "Message": "Registration successful", "Data": reporte}
