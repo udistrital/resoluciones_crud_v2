@@ -58,7 +58,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			AND r.dependencia_id=` + strconv.Itoa(m.Facultad) + `AND rv.nivel_academico='` + m.NivelAcademico + `'
 			AND r.numero_resolucion='` + m.Resolucion + `' AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
 			AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664)
-			AND re.estado_resolucion_id=671
+			AND (re.estado_resolucion_id=671 AND re.activo = true)
 			AND v.numero_contrato is not null
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
