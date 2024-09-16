@@ -17,7 +17,7 @@ type VinculacionDocente struct {
 	PersonaId                      float64                       `orm:"column(persona_id)"`
 	NumeroHorasSemanales           int                           `orm:"column(numero_horas_semanales)"`
 	NumeroSemanas                  int                           `orm:"column(numero_semanas)"`
-	PuntoSalarialId                int                           `orm:"column(punto_salarial_id);null"`
+	ValorPuntoSalarial             float64                       `orm:"column(valor_punto_salarial);null"`
 	SalarioMinimoId                int                           `orm:"column(salario_minimo_id);null"`
 	ResolucionVinculacionDocenteId *ResolucionVinculacionDocente `orm:"column(resolucion_vinculacion_docente_id);rel(fk)"`
 	DedicacionId                   int                           `orm:"column(dedicacion_id)"`
