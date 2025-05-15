@@ -471,7 +471,7 @@ paths:
     post:
       tags:
       - reporte_financiera
-      description: Crea el reporte de financiera
+      description: Crea el reporte de financiera para todas las facultades y tipos de vinculación
       operationId: ReporteFinancieraController.Reporte Financiera
       parameters:
       - in: body
@@ -1243,15 +1243,15 @@ definitions:
       ProyectoCurricularId:
         type: integer
         format: int32
-      PuntoSalarialId:
-        type: integer
-        format: int64
       ResolucionVinculacionDocenteId:
         $ref: '#/definitions/models.ResolucionVinculacionDocente'
       SalarioMinimoId:
         type: integer
         format: int64
       ValorContrato:
+        type: number
+        format: double
+      ValorPuntoSalarial:
         type: number
         format: double
       Vigencia:
