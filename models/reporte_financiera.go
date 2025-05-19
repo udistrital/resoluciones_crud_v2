@@ -157,6 +157,5 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
-	fmt.Printf("Data: %+v\n", reporte)
 	return reporte, nil
 }
