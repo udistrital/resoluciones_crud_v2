@@ -196,6 +196,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/udistrital/resoluciones_crud_v2/controllers:ReporteFinancieraController"] = append(beego.GlobalControllerRouter["github.com/udistrital/resoluciones_crud_v2/controllers:ReporteFinancieraController"],
+        beego.ControllerComments{
+            Method: "PostAll",
+            Router: "/all",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/udistrital/resoluciones_crud_v2/controllers:ResolucionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/resoluciones_crud_v2/controllers:ResolucionController"],
         beego.ControllerComments{
             Method: "Post",

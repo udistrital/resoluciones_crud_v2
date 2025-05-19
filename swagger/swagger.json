@@ -744,6 +744,43 @@
                 }
             }
         },
+        "/reporte_financiera/all": {
+            "post": {
+                "tags": [
+                    "reporte_financiera"
+                ],
+                "description": "Crea el reporte de financiera para todas las facultades y tipos de vinculación",
+                "operationId": "ReporteFinancieraController.Reporte Financiera",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DatosReporte content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DatosReporte"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.ReporteFinanciera"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/resolucion/": {
             "get": {
                 "tags": [
@@ -1853,10 +1890,6 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "PuntoSalarialId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "ResolucionVinculacionDocenteId": {
                     "$ref": "#/definitions/models.ResolucionVinculacionDocente"
                 },
@@ -1865,6 +1898,10 @@
                     "format": "int64"
                 },
                 "ValorContrato": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ValorPuntoSalarial": {
                     "type": "number",
                     "format": "double"
                 },
