@@ -64,10 +64,36 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
+	fmt.Println(reporte)
 	return reporte, nil
 }
 
-func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteFinanciera, err error) {
+type ReporteResolucion struct {
+	Id                    int     `db:"id"`
+	Resolucion            string  `db:"resolucion"`
+	Vigencia              int     `db:"vigencia"`
+	Periodo               int     `db:"periodo"`
+	NivelAcademico        string  `db:"nivel_academico"`
+	TipoVinculacion       string  `db:"tipo_vinculacion"`
+	DocumentoDocente      int     `db:"documento_docente"`
+	Horas                 float64 `db:"horas"`
+	Semanas               int     `db:"semanas"`
+	Total                 float64 `db:"total"`
+	Cdp                   int     `db:"cdp"`
+	Rp                    int     `db:"rp"`
+	Proyectocurricular    int     `db:"proyectocurricular"`
+	TipoResolucion        string  `db:"tipo_resolucion"`
+	Sueldobasico          float64 `db:"sueldobasico"`
+	Primanavidad          float64 `db:"primanavidad"`
+	Vacaciones            float64 `db:"vacaciones"`
+	Primavacaciones       float64 `db:"primavacaciones"`
+	Cesantias             float64 `db:"cesantias"`
+	Interesescesantias    float64 `db:"interesescesantias"`
+	Primaservicios        float64 `db:"primaservicios"`
+	Bonificacionservicios float64 `db:"bonificacionservicios"`
+}
+
+func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, err error) {
 	o := orm.NewOrm()
 	err = o.Begin()
 
@@ -80,17 +106,7 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteFinanciera, 
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
  			r.vigencia,
-			r.periodo,
-			case 
-				when r.dependencia_id = 17 then 'FACULTAD DE CIENCIAS Y EDUCACION'
-				when r.dependencia_id = 65 then 'FACULTAD DE MEDIO AMBIENTE'
-				when r.dependencia_id = 66 then 'FACULTAD TECNOLOGICA'
-				when r.dependencia_id = 8 then 'VICERRECTORIA ACADEMICA'
-				when r.dependencia_id = 14 then 'FACULTAD DE INGENIERIA'
-				when r.dependencia_id = 35 then 'FACULTAD DE ARTES - ASAB'
-				when r.dependencia_id = 232 then 'FACULTAD DE CIENCIAS MATEMATICAS Y NATURALES'
- 			end as facultad,	
-
+			r.periodo,	
 			rv.nivel_academico, 
 			rv.dedicacion tipo_vinculacion,
 			v.persona_id as documento_docente,
