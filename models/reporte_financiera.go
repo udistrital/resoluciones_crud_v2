@@ -106,17 +106,7 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
  			r.vigencia,
-			r.periodo,
-			case 
-				when r.dependencia_id = 17 then 'FACULTAD DE CIENCIAS Y EDUCACION'
-				when r.dependencia_id = 65 then 'FACULTAD DE MEDIO AMBIENTE'
-				when r.dependencia_id = 66 then 'FACULTAD TECNOLOGICA'
-				when r.dependencia_id = 8 then 'VICERRECTORIA ACADEMICA'
-				when r.dependencia_id = 14 then 'FACULTAD DE INGENIERIA'
-				when r.dependencia_id = 35 then 'FACULTAD DE ARTES - ASAB'
-				when r.dependencia_id = 232 then 'FACULTAD DE CIENCIAS MATEMATICAS Y NATURALES'
- 			end as facultad,	
-
+			r.periodo,	
 			rv.nivel_academico, 
 			rv.dedicacion tipo_vinculacion,
 			v.persona_id as documento_docente,
