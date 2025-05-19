@@ -64,10 +64,36 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
+	fmt.Println(reporte)
 	return reporte, nil
 }
 
-func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteFinanciera, err error) {
+type ReporteResolucion struct {
+	Id                    int     `db:"id"`
+	Resolucion            string  `db:"resolucion"`
+	Vigencia              int     `db:"vigencia"`
+	Periodo               int     `db:"periodo"`
+	NivelAcademico        string  `db:"nivel_academico"`
+	TipoVinculacion       string  `db:"tipo_vinculacion"`
+	DocumentoDocente      int     `db:"documento_docente"`
+	Horas                 float64 `db:"horas"`
+	Semanas               int     `db:"semanas"`
+	Total                 float64 `db:"total"`
+	Cdp                   int     `db:"cdp"`
+	Rp                    int     `db:"rp"`
+	Proyectocurricular    int     `db:"proyectocurricular"`
+	TipoResolucion        string  `db:"tipo_resolucion"`
+	Sueldobasico          float64 `db:"sueldobasico"`
+	Primanavidad          float64 `db:"primanavidad"`
+	Vacaciones            float64 `db:"vacaciones"`
+	Primavacaciones       float64 `db:"primavacaciones"`
+	Cesantias             float64 `db:"cesantias"`
+	Interesescesantias    float64 `db:"interesescesantias"`
+	Primaservicios        float64 `db:"primaservicios"`
+	Bonificacionservicios float64 `db:"bonificacionservicios"`
+}
+
+func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, err error) {
 	o := orm.NewOrm()
 	err = o.Begin()
 
@@ -131,5 +157,6 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteFinanciera, 
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
+	fmt.Printf("Data: %+v\n", reporte)
 	return reporte, nil
 }
