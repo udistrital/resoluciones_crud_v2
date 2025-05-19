@@ -116,7 +116,8 @@ steps:
   commands:
   - go get -t
   - go install github.com/beego/bee@v1.12.3
-  - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS//%/%25}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
+  - PG_MIGRATION_PASS_ESCAPED=$(echo "$PG_MIGRATION_PASS" | sed 's/%/%25/g')
+  - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS_ESCAPED}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
   when:
     branch:
     - release/*
