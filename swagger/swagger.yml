@@ -471,6 +471,30 @@ paths:
     post:
       tags:
       - reporte_financiera
+      description: Crea el reporte de financiera
+      operationId: ReporteFinancieraController.Reporte Financiera
+      parameters:
+      - in: body
+        name: body
+        description: body for DatosReporte content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DatosReporte'
+      responses:
+        "201":
+          description: ""
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/models.ReporteFinanciera'
+        "400":
+          description: bad request
+        "500":
+          description: Internal server error
+  /reporte_financiera/all:
+    post:
+      tags:
+      - reporte_financiera
       description: Crea el reporte de financiera para todas las facultades y tipos de vinculación
       operationId: ReporteFinancieraController.Reporte Financiera
       parameters:

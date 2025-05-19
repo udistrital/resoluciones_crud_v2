@@ -17,7 +17,7 @@ type ReporteFinancieraController struct {
 // URLMapping ...
 func (c *ReporteFinancieraController) URLMapping() {
 	c.Mapping("Post", c.Post)
-	c.Mapping("Post", c.PostAll)
+	c.Mapping("PostAll", c.PostAll)
 }
 
 // Post ...
@@ -57,9 +57,9 @@ func (c *ReporteFinancieraController) Post() {
 // @Success 201 {object} []models.ReporteFinanciera
 // @Failure 400 bad request
 // @Failure 500 Internal server error
-// @router / [post]
+// @router /all [post]
 func (c *ReporteFinancieraController) PostAll() {
-	var v models.DatosReporte
+	var v models.DatosReporteAll
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if reporte, err := models.ReporteFinancieraV2Query(&v); err == nil {
 			fmt.Println("REPORTE ", reporte)

@@ -199,7 +199,7 @@ func init() {
     beego.GlobalControllerRouter["github.com/udistrital/resoluciones_crud_v2/controllers:ReporteFinancieraController"] = append(beego.GlobalControllerRouter["github.com/udistrital/resoluciones_crud_v2/controllers:ReporteFinancieraController"],
         beego.ControllerComments{
             Method: "PostAll",
-            Router: "/",
+            Router: "/all",
             AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,
