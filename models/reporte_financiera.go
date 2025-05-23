@@ -57,9 +57,8 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			r.id = rv.id AND rv.id = v.resolucion_vinculacion_docente_id AND r.id = re.resolucion_id AND v.id=dv.vinculacion_docente_id
 			AND r.dependencia_id=` + strconv.Itoa(m.Facultad) + `AND rv.nivel_academico='` + m.NivelAcademico + `'
 			AND r.numero_resolucion='` + m.Resolucion + `' AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
-			AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664)
+			AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
 			AND (re.estado_resolucion_id=671 AND re.activo = true)
-			AND v.numero_contrato is not null
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
@@ -142,7 +141,6 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 				AND rv.nivel_academico='` + m.NivelAcademico + `'
 				AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
 				AND (re.estado_resolucion_id=671 AND re.activo = true)
-				AND v.numero_contrato is not null
 		GROUP BY r.id, r.numero_resolucion, v.id, rv.nivel_academico, rv.dedicacion 
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
