@@ -140,7 +140,7 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 				AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
 				AND rv.nivel_academico='` + m.NivelAcademico + `'
 				AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
-				AND (re.estado_resolucion_id=671 AND re.activo = true)
+				AND (re.estado_resolucion_id=671 AND v.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id, rv.nivel_academico, rv.dedicacion 
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
