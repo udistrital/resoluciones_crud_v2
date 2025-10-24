@@ -1,6 +1,9 @@
 package main
 
 import (
+	"net/url"
+
+	"github.com/astaxie/beego/context"
 	_ "github.com/udistrital/resoluciones_crud_v2/routers"
 
 	"github.com/astaxie/beego"
@@ -16,7 +19,7 @@ import (
 func main() {
 	orm.RegisterDataBase("default", "postgres", "postgres://"+
 		beego.AppConfig.String("PGuser")+":"+
-		beego.AppConfig.String("PGpass")+"@"+
+		url.QueryEscape(beego.AppConfig.String("PGpass"))+"@"+
 		beego.AppConfig.String("PGhost")+":"+
 		beego.AppConfig.String("PGport")+"/"+
 		beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+
@@ -42,7 +45,22 @@ func main() {
 	}))
 	xray.InitXRay()
 	beego.ErrorController(&customerrorv2.CustomErrorController{})
+	beego.InsertFilter("*", beego.BeforeExec, SecurityHeaders)
 	apistatus.Init()
 	auditoria.InitMiddleware()
 	beego.Run()
+}
+
+func SecurityHeaders(ctx *context.Context) {
+	ctx.Output.Header("Clear-Site-Data", "'cache', 'cookies', 'storage', 'executionContexts'")
+	ctx.Output.Header("Cross-Origin-Embedder-Policy", "require-corp")
+	ctx.Output.Header("Cross-Origin-Opener-Policy", "same-origin")
+	ctx.Output.Header("Cross-Origin-Resource-Policy", "same-origin")
+	ctx.Output.Header("Permissions-Policy", "geolocation=(), microphone=(), camera=()")
+	ctx.Output.Header("Referrer-Policy", "no-referrer")
+	ctx.Output.Header("Server", "")
+	ctx.Output.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+	ctx.Output.Header("X-Content-Type-Options", "nosniff")
+	ctx.Output.Header("X-Frame-Options", "DENY")
+	ctx.Output.Header("X-Permitted-Cross-Domain-Policies", "none")
 }
