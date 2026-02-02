@@ -34,8 +34,6 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 		return
 	}
 
-	fmt.Println("m ", m)
-
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
 			v.persona_id as cedula,
@@ -61,9 +59,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			AND (re.estado_resolucion_id=671 AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
-	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
-	fmt.Println(reporte)
 	return reporte, nil
 }
 

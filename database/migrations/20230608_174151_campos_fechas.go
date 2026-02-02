@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
+	"log"
 	"strings"
 
 	"github.com/astaxie/beego/migration"
@@ -28,13 +28,12 @@ func (m *CamposFechas_20230608_174151) Up() {
 
 	if err != nil {
 		// handle error
-		fmt.Println(err)
+		log.Println(err)
 	}
 
 	requests := strings.Split(string(file), ";")
 
 	for _, request := range requests {
-		fmt.Println(request)
 		m.SQL(request)
 		// do whatever you need with result and error
 	}
@@ -48,13 +47,12 @@ func (m *CamposFechas_20230608_174151) Down() {
 
 	if err != nil {
 		// handle error
-		fmt.Println(err)
+		log.Println(err)
 	}
 
 	requests := strings.Split(string(file), ";")
 
 	for _, request := range requests {
-		fmt.Println(request)
 		m.SQL(request)
 		// do whatever you need with result and error
 	}

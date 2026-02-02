@@ -1,66 +1,63 @@
 package main
 
 import (
-	"net/url"
-
-	"github.com/astaxie/beego/context"
 	_ "github.com/udistrital/resoluciones_crud_v2/routers"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	auditoria "github.com/udistrital/utils_oas/auditoria"
 	"github.com/udistrital/utils_oas/customerrorv2"
+	"github.com/udistrital/utils_oas/database"
+	"github.com/udistrital/utils_oas/security"
 	"github.com/udistrital/utils_oas/xray"
 )
 
 func main() {
-	orm.RegisterDataBase("default", "postgres", "postgres://"+
-		beego.AppConfig.String("PGuser")+":"+
-		url.QueryEscape(beego.AppConfig.String("PGpass"))+"@"+
-		beego.AppConfig.String("PGhost")+":"+
-		beego.AppConfig.String("PGport")+"/"+
-		beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+
-		beego.AppConfig.String("PGschema")+"")
 
-	AllowedOrigins := []string{"*.udistrital.edu.co"}
-	if beego.BConfig.RunMode == "dev" {
-		AllowedOrigins = []string{"*"}
+	conn, err := database.BuildPostgresConnectionString()
+	if err != nil {
+		logs.Error("error consultando la cadena de conexión: %v", err)
+		return
+	}
+
+	err = orm.RegisterDataBase("default", "postgres", conn)
+	if err != nil {
+		logs.Error("error al conectarse a la base de datos: %v", err)
+		return
+	}
+
+	allowedOrigins := []string{"*.udistrital.edu.co"}
+	if beego.BConfig.RunMode == beego.DEV {
+		allowedOrigins = []string{"*"}
+		orm.Debug = true
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}
+
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
-		AllowOrigins: AllowedOrigins,
+		AllowOrigins: allowedOrigins,
 		AllowMethods: []string{"PUT", "PATCH", "GET", "POST", "OPTIONS", "DELETE"},
-		AllowHeaders: []string{"Origin", "x-requested-with",
-			"content-type",
-			"accept",
-			"origin",
-			"authorization",
-			"x-csrftoken"},
+		AllowHeaders: []string{
+			"Accept",
+			"Authorization",
+			"Content-Type",
+			"User-Agent",
+			"X-Amzn-Trace-Id"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
-	xray.InitXRay()
-	beego.ErrorController(&customerrorv2.CustomErrorController{})
-	beego.InsertFilter("*", beego.BeforeExec, SecurityHeaders)
+
+	err = xray.InitXRay()
+	if err != nil {
+		logs.Error("error configurando AWS XRay: %v", err)
+	}
 	apistatus.Init()
 	auditoria.InitMiddleware()
+	beego.ErrorController(&customerrorv2.CustomErrorController{})
+	security.SetSecurityHeaders()
 	beego.Run()
-}
-
-func SecurityHeaders(ctx *context.Context) {
-	ctx.Output.Header("Clear-Site-Data", "'cache', 'cookies', 'storage', 'executionContexts'")
-	ctx.Output.Header("Cross-Origin-Embedder-Policy", "require-corp")
-	ctx.Output.Header("Cross-Origin-Opener-Policy", "same-origin")
-	ctx.Output.Header("Cross-Origin-Resource-Policy", "same-origin")
-	ctx.Output.Header("Permissions-Policy", "geolocation=(), microphone=(), camera=()")
-	ctx.Output.Header("Referrer-Policy", "no-referrer")
-	ctx.Output.Header("Server", "")
-	ctx.Output.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
-	ctx.Output.Header("X-Content-Type-Options", "nosniff")
-	ctx.Output.Header("X-Frame-Options", "DENY")
-	ctx.Output.Header("X-Permitted-Cross-Domain-Policies", "none")
 }
