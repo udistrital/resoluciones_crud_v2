@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/astaxie/beego/orm"
@@ -34,8 +33,6 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 		return
 	}
 
-	fmt.Println("m ", m)
-
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
 			v.persona_id as cedula,
@@ -66,9 +63,7 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			AND (per.codigo_abreviacion='REXP' AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
-	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
-	fmt.Println(reporte)
 	return reporte, nil
 }
 
@@ -104,8 +99,6 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 	if err != nil {
 		return
 	}
-
-	fmt.Println("m ", m)
 
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
@@ -149,7 +142,6 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 				AND (per.codigo_abreviacion='REXP' AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id, rv.nivel_academico, rv.dedicacion 
 		ORDER BY r.id DESC;`
-	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
 	return reporte, nil
 }
