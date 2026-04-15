@@ -34,6 +34,8 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 		return
 	}
 
+	fmt.Println("m ", m)
+
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
 			v.persona_id as cedula,
@@ -50,16 +52,23 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 			SUM(dv.valor) filter (WHERE dv.rubro='InteresesCesantias') as interesescesantias,
 			SUM(dv.valor) filter (WHERE dv.rubro='PrimaServicios') as primaservicios,
 			SUM(dv.valor) filter (WHERE dv.rubro='BonificacionServicios') as bonificacionservicios
-		FROM resoluciones_new.resolucion r, resoluciones_new.resolucion_vinculacion_docente rv, resoluciones_new.resolucion_estado re, resoluciones_new.vinculacion_docente v, resoluciones_new.disponibilidad_vinculacion dv
+		FROM resoluciones_new.resolucion r
+		JOIN resoluciones_new.resolucion_vinculacion_docente rv ON r.id = rv.id
+		JOIN resoluciones_new.resolucion_estado re ON r.id = re.resolucion_id
+		JOIN resoluciones_new.vinculacion_docente v ON rv.id = v.resolucion_vinculacion_docente_id
+		JOIN resoluciones_new.disponibilidad_vinculacion dv ON v.id = dv.vinculacion_docente_id
+		JOIN parametros.parametro ptr ON ptr.id = r.tipo_resolucion_id
+		JOIN parametros.parametro per ON per.id = re.estado_resolucion_id
 		WHERE
-			r.id = rv.id AND rv.id = v.resolucion_vinculacion_docente_id AND r.id = re.resolucion_id AND v.id=dv.vinculacion_docente_id
-			AND r.dependencia_id=` + strconv.Itoa(m.Facultad) + `AND rv.nivel_academico='` + m.NivelAcademico + `'
+			r.dependencia_id=` + strconv.Itoa(m.Facultad) + ` AND rv.nivel_academico='` + m.NivelAcademico + `'
 			AND r.numero_resolucion='` + m.Resolucion + `' AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
-			AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
-			AND (re.estado_resolucion_id=671 AND v.activo = true AND re.activo = true)
+			AND ptr.codigo_abreviacion IN ('RVIN', 'RADD', 'RRED', 'RCAN')
+			AND (per.codigo_abreviacion='REXP' AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
+	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
+	fmt.Println(reporte)
 	return reporte, nil
 }
 
@@ -112,10 +121,10 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 			v.numero_rp rp,
 			v.proyecto_curricular_id as proyectocurricular,
 			case 
-				when r.tipo_resolucion_id = 663 then 'vinculación'
-				when r.tipo_resolucion_id = 664 then 'adición'
-				when r.tipo_resolucion_id = 665 then 'reducción'
-				when r.tipo_resolucion_id = 666 then 'cancelación'
+				when ptr.codigo_abreviacion = 'RVIN' then 'vinculación'
+				when ptr.codigo_abreviacion = 'RADD' then 'adición'
+				when ptr.codigo_abreviacion = 'RRED' then 'reducción'
+				when ptr.codigo_abreviacion = 'RCAN' then 'cancelación'
 			end as tipo_resolucion,
 			SUM(dv.valor) filter (WHERE dv.rubro='SueldoBasico') as sueldobasico,
 			SUM(dv.valor) filter (WHERE dv.rubro='PrimaNavidad') as primanavidad,
@@ -125,18 +134,19 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 			SUM(dv.valor) filter (WHERE dv.rubro='InteresesCesantias') as interesescesantias,
 			SUM(dv.valor) filter (WHERE dv.rubro='PrimaServicios') as primaservicios,
 			SUM(dv.valor) filter (WHERE dv.rubro='BonificacionServicios') as bonificacionservicios
-		FROM resoluciones_new.resolucion r, 
-			resoluciones_new.resolucion_vinculacion_docente rv, 
-			resoluciones_new.resolucion_estado re, 
-			resoluciones_new.vinculacion_docente v, 
-			resoluciones_new.disponibilidad_vinculacion dv
-			WHERE
-				r.id = rv.id AND rv.id = v.resolucion_vinculacion_docente_id AND r.id = re.resolucion_id AND v.id=dv.vinculacion_docente_id
-				AND r.dependencia_id= ` + strconv.Itoa(m.Facultad) + `
+		FROM resoluciones_new.resolucion r
+			JOIN resoluciones_new.resolucion_vinculacion_docente rv ON r.id = rv.id
+			JOIN resoluciones_new.resolucion_estado re ON r.id = re.resolucion_id
+			JOIN resoluciones_new.vinculacion_docente v ON rv.id = v.resolucion_vinculacion_docente_id
+			JOIN resoluciones_new.disponibilidad_vinculacion dv ON v.id = dv.vinculacion_docente_id
+			JOIN parametros.parametro ptr ON ptr.id = r.tipo_resolucion_id
+			JOIN parametros.parametro per ON per.id = re.estado_resolucion_id
+		WHERE
+				r.dependencia_id= ` + strconv.Itoa(m.Facultad) + `
 				AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
 				AND rv.nivel_academico='` + m.NivelAcademico + `'
-				AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
-				AND (re.estado_resolucion_id=671 AND v.activo = true AND re.activo = true)
+				AND ptr.codigo_abreviacion IN ('RVIN', 'RADD', 'RRED', 'RCAN')
+				AND (per.codigo_abreviacion='REXP' AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id, rv.nivel_academico, rv.dedicacion 
 		ORDER BY r.id DESC;`
 	fmt.Println("QUERY ", query)
