@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/astaxie/beego/orm"
@@ -53,10 +52,10 @@ func ReporteFinancieraQuery(m *DatosReporte) (reporte []ReporteFinanciera, err e
 		FROM resoluciones_new.resolucion r, resoluciones_new.resolucion_vinculacion_docente rv, resoluciones_new.resolucion_estado re, resoluciones_new.vinculacion_docente v, resoluciones_new.disponibilidad_vinculacion dv
 		WHERE
 			r.id = rv.id AND rv.id = v.resolucion_vinculacion_docente_id AND r.id = re.resolucion_id AND v.id=dv.vinculacion_docente_id
-			AND r.dependencia_id=` + strconv.Itoa(m.Facultad) + `AND rv.nivel_academico='` + m.NivelAcademico + `'
+			AND r.dependencia_id=` + strconv.Itoa(m.Facultad) + ` AND rv.nivel_academico='` + m.NivelAcademico + `'
 			AND r.numero_resolucion='` + m.Resolucion + `' AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
-			AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
-			AND (re.estado_resolucion_id=671 AND v.activo = true AND re.activo = true)
+			AND r.tipo_resolucion_id IN (` + strconv.Itoa(m.TipoResolucionVinculacionId) + `, ` + strconv.Itoa(m.TipoResolucionAdicionId) + `, ` + strconv.Itoa(m.TipoResolucionReduccionId) + `, ` + strconv.Itoa(m.TipoResolucionCancelacionId) + `)
+			AND (re.estado_resolucion_id=` + strconv.Itoa(m.EstadoResolucionExpedidaId) + ` AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id
 		ORDER BY r.id DESC;`
 	_, err = o.Raw(query).QueryRows(&reporte)
@@ -96,8 +95,6 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 		return
 	}
 
-	fmt.Println("m ", m)
-
 	query :=
 		`SELECT r.id, r.numero_resolucion as resolucion,
  			r.vigencia,
@@ -112,10 +109,10 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 			v.numero_rp rp,
 			v.proyecto_curricular_id as proyectocurricular,
 			case 
-				when r.tipo_resolucion_id = 663 then 'vinculación'
-				when r.tipo_resolucion_id = 664 then 'adición'
-				when r.tipo_resolucion_id = 665 then 'reducción'
-				when r.tipo_resolucion_id = 666 then 'cancelación'
+				when r.tipo_resolucion_id = ` + strconv.Itoa(m.TipoResolucionVinculacionId) + ` then 'vinculación'
+				when r.tipo_resolucion_id = ` + strconv.Itoa(m.TipoResolucionAdicionId) + ` then 'adición'
+				when r.tipo_resolucion_id = ` + strconv.Itoa(m.TipoResolucionReduccionId) + ` then 'reducción'
+				when r.tipo_resolucion_id = ` + strconv.Itoa(m.TipoResolucionCancelacionId) + ` then 'cancelación'
 			end as tipo_resolucion,
 			SUM(dv.valor) filter (WHERE dv.rubro='SueldoBasico') as sueldobasico,
 			SUM(dv.valor) filter (WHERE dv.rubro='PrimaNavidad') as primanavidad,
@@ -135,11 +132,10 @@ func ReporteFinancieraV2Query(m *DatosReporteAll) (reporte []ReporteResolucion, 
 				AND r.dependencia_id= ` + strconv.Itoa(m.Facultad) + `
 				AND r.vigencia=` + strconv.Itoa(m.Vigencia) + `
 				AND rv.nivel_academico='` + m.NivelAcademico + `'
-				AND (r.tipo_resolucion_id=663 OR r.tipo_resolucion_id=664 OR r.tipo_resolucion_id=665 OR r.tipo_resolucion_id=666)
-				AND (re.estado_resolucion_id=671 AND v.activo = true AND re.activo = true)
+				AND r.tipo_resolucion_id IN (` + strconv.Itoa(m.TipoResolucionVinculacionId) + `, ` + strconv.Itoa(m.TipoResolucionAdicionId) + `, ` + strconv.Itoa(m.TipoResolucionReduccionId) + `, ` + strconv.Itoa(m.TipoResolucionCancelacionId) + `)
+				AND (re.estado_resolucion_id=` + strconv.Itoa(m.EstadoResolucionExpedidaId) + ` AND v.activo = true AND re.activo = true)
 		GROUP BY r.id, r.numero_resolucion, v.id, rv.nivel_academico, rv.dedicacion 
 		ORDER BY r.id DESC;`
-	fmt.Println("QUERY ", query)
 	_, err = o.Raw(query).QueryRows(&reporte)
 	return reporte, nil
 }
